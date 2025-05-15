@@ -1,6 +1,6 @@
 import { useEffect, useRef } from 'react';
 import { motion, useInView } from 'framer-motion';
-import { gsap } from 'gsap';
+import gsap from 'gsap';
 
 const About = () => {
   const sectionRef = useRef(null);
@@ -9,7 +9,7 @@ const About = () => {
   const isInView = useInView(sectionRef, { once: false, amount: 0.3 });
   
   useEffect(() => {
-    if (isInView && sectionRef.current) {
+    if (isInView && sectionRef.current && textRef.current && imageRef.current) {
       // Animación con GSAP
       gsap.fromTo(
         textRef.current,
@@ -115,6 +115,10 @@ const About = () => {
                 src="/images/profile.jpg" 
                 alt="Foto de perfil"
                 className="w-full h-auto rounded-lg transform hover:scale-[1.02] transition-transform duration-300"
+                onError={(e) => {
+                  console.error('Error loading image');
+                  e.target.src = 'data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%22400%22%20height%3D%22400%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20400%20400%22%20preserveAspectRatio%3D%22none%22%3E%3Cdefs%3E%3Cstyle%20type%3D%22text%2Fcss%22%3E%23holder_189077579c1%20text%20%7B%20fill%3A%23A855F7%3Bfont-weight%3Abold%3Bfont-family%3AArial%2C%20Helvetica%2C%20Open%20Sans%2C%20sans-serif%2C%20monospace%3Bfont-size%3A20pt%20%7D%20%3C%2Fstyle%3E%3C%2Fdefs%3E%3Cg%20id%3D%22holder_189077579c1%22%3E%3Crect%20width%3D%22400%22%20height%3D%22400%22%20fill%3D%22%231E293B%22%3E%3C%2Frect%3E%3Cg%3E%3Ctext%20x%3D%22149.5%22%20y%3D%22209.1%22%3EFoto%20de%20Perfil%3C%2Ftext%3E%3C%2Fg%3E%3C%2Fg%3E%3C%2Fsvg%3E';
+                }}
               />
               
               <div className="mt-6 space-y-4">
@@ -126,7 +130,7 @@ const About = () => {
                   </div>
                   <div>
                     <h4 className="text-purple-400 font-medium">Email</h4>
-                    <p className="text-gray-300">ejemplo@tudominio.com</p>
+                    <p className="text-gray-300">nikovaz1515@gmail.com"</p>
                   </div>
                 </div>
                 
@@ -139,7 +143,7 @@ const About = () => {
                   </div>
                   <div>
                     <h4 className="text-purple-400 font-medium">Ubicación</h4>
-                    <p className="text-gray-300">Ciudad, País</p>
+                    <p className="text-gray-300">Buenos Aires, Argentina</p>
                   </div>
                 </div>
               </div>

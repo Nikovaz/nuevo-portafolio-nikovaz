@@ -15,32 +15,44 @@ const Skills = () => {
   };
 
   const skills = [
-    { name: 'Frontend', progress: 95, color: 'from-purple-500 to-blue-500' },
-    { name: 'Backend', progress: 85, color: 'from-pink-500 to-red-500' },
-    { name: 'UI/UX Design', progress: 80, color: 'from-green-500 to-teal-500' },
-    { name: 'Mobile Development', progress: 75, color: 'from-yellow-500 to-orange-500' },
-    { name: 'Database Management', progress: 90, color: 'from-indigo-500 to-violet-500' },
-    { name: 'DevOps', progress: 70, color: 'from-red-500 to-pink-500' },
-  ];
+  { name: 'Frontend', progress: 95, color: 'from-purple-500 to-blue-500' },
+  { name: 'Backend', progress: 85, color: 'from-pink-500 to-red-500' },
+  { name: 'Bases de Datos', progress: 90, color: 'from-indigo-500 to-violet-500' },
+  { name: 'Herramientas de Desarrollo', progress: 80, color: 'from-gray-500 to-slate-500' },
+  { name: 'IA y Automatización', progress: 75, color: 'from-lime-500 to-green-500' },
+  { name: 'Plataformas Cloud y APIs', progress: 70, color: 'from-cyan-500 to-blue-300' },
+  // Podrías considerar eliminar o ajustar estas si no se basan en la carrera de Coderhouse:
+  // { name: 'UI/UX Design', progress: 80, color: 'from-green-500 to-teal-500' },
+  // { name: 'Mobile Development', progress: 75, color: 'from-yellow-500 to-orange-500' },
+  // { name: 'DevOps', progress: 70, color: 'from-red-500 to-pink-500' },
+];
 
-  const techCategories = [
-    {
-      name: 'Frontend',
-      techs: ['React', 'Next.js', 'JavaScript', 'TypeScript', 'HTML5', 'CSS3', 'Tailwind CSS', 'SASS', 'Redux', 'Framer Motion']
-    },
-    {
-      name: 'Backend',
-      techs: ['Node.js', 'Express', 'Python', 'Django', 'REST API', 'GraphQL', 'PHP', 'Laravel', 'Socket.io', 'Strapi']
-    },
-    {
-      name: 'Database',
-      techs: ['MongoDB', 'MySQL', 'PostgreSQL', 'Firebase', 'Redis', 'Prisma', 'Mongoose', 'SQLite', 'Sequelize', 'Supabase']
-    },
-    {
-      name: 'Tools & Others',
-      techs: ['Git', 'GitHub', 'Docker', 'AWS', 'Vercel', 'Netlify', 'Figma', 'Webpack', 'Jest', 'GitHub Actions']
-    }
-  ];
+const techCategories = [
+  {
+    name: 'Frontend',
+    techs: ['React', 'Next.js', 'JavaScript', 'TypeScript', 'HTML5', 'CSS3', 'Tailwind CSS', 'SASS']
+  },
+  {
+    name: 'Backend',
+    techs: ['Node.js', 'Express', 'REST API', 'Socket.io', 'Strapi']
+  },
+  {
+    name: 'Database',
+    techs: ['MongoDB', 'Firebase', 'Mongoose', 'MongoAtlas', 'Supabase']
+  },
+  {
+    name: 'Herramientas de Desarrollo',
+    techs: ['Git', 'GitHub', 'Vercel', 'Netlify', 'Webpack', 'Jest', 'GitHub Actions', 'Postman', 'Ngrok']
+  },
+  {
+    name: 'IA y Automatización',
+    techs: ['Gemini', 'n8n', 'Manychat']
+  },
+  {
+    name: 'Plataformas Cloud y APIs',
+    techs: ['Google Cloud', 'Firebase', 'Cloud con MCP']
+  }
+];
 
   const containerVariants = {
     hidden: { opacity: 0 },

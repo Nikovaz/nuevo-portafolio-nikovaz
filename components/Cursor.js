@@ -2,90 +2,75 @@ import { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 
 const Cursor = () => {
-  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
-  const [cursorVariant, setCursorVariant] = useState('default');
-
+  // Implementación segura del cursor personalizado
+  const [position, setPosition] = useState({ x: 0, y: 0 });
+  const [visible, setVisible] = useState(false);
+  
+  // Si estamos en un dispositivo móvil, no mostramos el cursor personalizado
+  const [isMobile, setIsMobile] = useState(false);
+  
   useEffect(() => {
-    const mouseMove = (e) => {
-      setMousePosition({
-        x: e.clientX,
-        y: e.clientY
-      });
-    };
-
-    const mouseDown = () => setCursorVariant('click');
-    const mouseUp = () => setCursorVariant('default');
-    const mouseHover = () => setCursorVariant('hover');
-    const mouseLeave = () => setCursorVariant('default');
-
-    window.addEventListener('mousemove', mouseMove);
-    window.addEventListener('mousedown', mouseDown);
-    window.addEventListener('mouseup', mouseUp);
-
-    // Agregar eventos de hover a elementos interactivos
-    const interactiveElements = document.querySelectorAll('a, button, input, textarea, select, [role="button"]');
-    
-    interactiveElements.forEach(element => {
-      element.addEventListener('mouseenter', mouseHover);
-      element.addEventListener('mouseleave', mouseLeave);
-    });
-
-    return () => {
-      window.removeEventListener('mousemove', mouseMove);
-      window.removeEventListener('mousedown', mouseDown);
-      window.removeEventListener('mouseup', mouseUp);
+    // Verificar si estamos en el cliente y si es un dispositivo móvil
+    if (typeof window !== 'undefined') {
+      const checkMobile = () => {
+        setIsMobile(window.innerWidth <= 768);
+      };
       
-      interactiveElements.forEach(element => {
-        element.removeEventListener('mouseenter', mouseHover);
-        element.removeEventListener('mouseleave', mouseLeave);
-      });
-    };
-  }, []);
-
-  const variants = {
-    default: {
-      x: mousePosition.x - 16,
-      y: mousePosition.y - 16,
-      height: 32,
-      width: 32,
-      backgroundColor: 'rgba(255, 255, 255, 0.1)',
-      border: '1px solid rgba(255, 255, 255, 0.5)',
-      mixBlendMode: 'difference'
-    },
-    hover: {
-      x: mousePosition.x - 24,
-      y: mousePosition.y - 24,
-      height: 48,
-      width: 48,
-      backgroundColor: 'rgba(255, 255, 255, 0.2)',
-      border: '1px solid rgba(255, 255, 255, 0.8)',
-      mixBlendMode: 'difference'
-    },
-    click: {
-      x: mousePosition.x - 12,
-      y: mousePosition.y - 12,
-      height: 24,
-      width: 24,
-      backgroundColor: 'rgba(255, 255, 255, 0.3)',
-      border: '1px solid rgba(255, 255, 255, 1)',
-      mixBlendMode: 'difference'
+      // Comprobar inicialmente
+      checkMobile();
+      
+      // Actualizar en cambios de tamaño
+      window.addEventListener('resize', checkMobile);
+      
+      // Si no es móvil, agregamos los listeners del cursor
+      if (!isMobile) {
+        const updatePosition = (e) => {
+          setPosition({ x: e.clientX, y: e.clientY });
+          setVisible(true);
+        };
+        
+        const hideOnLeave = () => {
+          setVisible(false);
+        };
+        
+        window.addEventListener('mousemove', updatePosition);
+        window.addEventListener('mouseenter', updatePosition);
+        window.addEventListener('mouseleave', hideOnLeave);
+        
+        return () => {
+          window.removeEventListener('mousemove', updatePosition);
+          window.removeEventListener('mouseenter', updatePosition);
+          window.removeEventListener('mouseleave', hideOnLeave);
+          window.removeEventListener('resize', checkMobile);
+        };
+      }
+      
+      return () => {
+        window.removeEventListener('resize', checkMobile);
+      };
     }
-  };
-
-  // Ocultar el cursor en dispositivos móviles
-  if (typeof window !== 'undefined' && window.innerWidth <= 768) {
+  }, [isMobile]);
+  
+  // Si es móvil o no estamos en el cliente, no mostramos nada
+  if (isMobile || typeof window === 'undefined') {
     return null;
   }
-
+  
   return (
     <motion.div
-      className="cursor-dot fixed top-0 left-0 rounded-full pointer-events-none z-[9999] hidden md:block"
-      variants={variants}
-      animate={cursorVariant}
+      className="hidden md:block pointer-events-none fixed top-0 left-0 z-50 w-5 h-5 rounded-full bg-purple-500 mix-blend-difference"
+      style={{
+        x: position.x - 10,
+        y: position.y - 10
+      }}
+      animate={{
+        opacity: visible ? 1 : 0,
+        scale: visible ? 1 : 0
+      }}
       transition={{
-        type: 'spring',
-        damping: 25,
-        stiffness: 700,
+        type: "spring",
+        damping: 20,
+        stiffness: 300,
         mass: 0.5
       }}
     />

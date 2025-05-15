@@ -1,6 +1,5 @@
 import { useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
-import { gsap } from 'gsap';
 
 const Hero = () => {
   const titleRef = useRef(null);
@@ -29,43 +28,40 @@ const Hero = () => {
     }
   };
 
-  // Efecto de escritura para el título
+  // Animación del indicador de desplazamiento
   useEffect(() => {
-    if (titleRef.current) {
-      // Configuración para la animación de texto
-      const title = titleRef.current;
-      const text = title.innerText;
-      title.innerText = '';
-      
-      // Crear spans para cada carácter
-      [...text].forEach(char => {
-        const span = document.createElement('span');
-        span.textContent = char;
-        span.className = 'inline-block opacity-0';
-        title.appendChild(span);
-      });
-      
-      // Animar cada carácter
-      gsap.to(title.children, {
-        opacity: 1,
-        y: 0,
-        stagger: 0.05,
-        delay: 0.5,
-        ease: "power2.out",
-      });
-    }
+    // Garantizar que el código se ejecute solo en el cliente
+    if (typeof window === 'undefined') return;
+    
+    const scrollIndicator = scrollIndicatorRef.current;
+    if (!scrollIndicator) return;
 
-    // Animación del scroll indicador
-    if (scrollIndicatorRef.current) {
-      gsap.to(scrollIndicatorRef.current, {
-        y: 10,
-        opacity: 0.7,
-        repeat: -1,
-        duration: 1.5,
-        yoyo: true,
-        ease: "power2.inOut"
-      });
-    }
+    // Usar requestAnimationFrame para una animación suave
+    let animationFrameId;
+    let startTime;
+    
+    const animate = (timestamp) => {
+      if (!startTime) startTime = timestamp;
+      const elapsed = timestamp - startTime;
+      
+      // Movimiento sinusoidal suave
+      const yPos = Math.sin(elapsed / 500) * 5;
+      const opacity = 0.7 - Math.abs(yPos) / 20;
+      
+      if (scrollIndicator) {
+        scrollIndicator.style.transform = `translate(-50%, ${yPos}px)`;
+        scrollIndicator.style.opacity = opacity;
+      }
+      
+      animationFrameId = requestAnimationFrame(animate);
+    };
+    
+    animationFrameId = requestAnimationFrame(animate);
+    
+    // Limpiar animación al desmontar
+    return () => {
+      cancelAnimationFrame(animationFrameId);
+    };
   }, []);
 
   return (
@@ -73,10 +69,11 @@ const Hero = () => {
       {/* Fondo con efecto de gradiente */}
       <div className="absolute inset-0 bg-gradient-to-b from-black to-gray-900 z-0" />
       
-      {/* Efecto de partículas o ruido */}
+      {/* Efecto de partículas o ruido simplificado */}
       <div className="absolute inset-0 z-0 opacity-20" style={{ 
-        backgroundImage: 'url("data:image/svg+xml,%3Csvg viewBox=\'0 0 2000 1500\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cfilter id=\'a\'%3E%3CfeTurbulence baseFrequency=\'.5\' numOctaves=\'2\' seed=\'1\' stitchTiles=\'stitch\'/%3E%3C/filter%3E%3Crect width=\'100%25\' height=\'100%25\' filter=\'url(%23a)\' opacity=\'.2\'/%3E%3C/svg%3E")',
-        backgroundSize: 'cover'
+        backgroundColor: '#000',
+        backgroundImage: 'radial-gradient(#444 1px, transparent 1px)',
+        backgroundSize: '30px 30px'
       }} />
 
       <motion.div 
@@ -92,12 +89,13 @@ const Hero = () => {
           DESARROLLADOR FULLSTACK
         </motion.p>
         
-        <h1 
+        <motion.h1 
           ref={titleRef}
           className="text-4xl md:text-7xl font-bold mb-8 tracking-tight"
+          variants={childVariants}
         >
           Nicolas Galarza Vazquez
-        </h1>
+        </motion.h1>
         
         <motion.p 
           ref={descriptionRef}

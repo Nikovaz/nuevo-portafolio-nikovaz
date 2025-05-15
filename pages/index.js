@@ -1,8 +1,6 @@
 import { useEffect, useState, useRef } from 'react';
 import Head from 'next/head';
-import { motion, useScroll, useTransform } from 'framer-motion';
-import { gsap } from 'gsap';
-import { ScrollTrigger } from 'gsap/dist/ScrollTrigger';
+import { motion } from 'framer-motion';
 
 // Componentes
 import Navbar from '../components/Navbar';
@@ -19,43 +17,13 @@ export default function Home() {
   const mainRef = useRef(null);
 
   useEffect(() => {
-    // Registrar ScrollTrigger con GSAP
+    // Solo un breve retraso para la animación de carga
     if (typeof window !== 'undefined') {
-      gsap.registerPlugin(ScrollTrigger);
+      const timer = setTimeout(() => {
+        setLoading(false);
+      }, 800);
       
-      // Animación de carga inicial
-      const tl = gsap.timeline({
-        onComplete: () => setLoading(false)
-      });
-      
-      tl.to('.loader', {
-        duration: 1,
-        opacity: 0,
-        delay: 1,
-        ease: 'power2.inOut'
-      });
-
-      // Efecto de parallax para las secciones
-      const sections = document.querySelectorAll('section');
-      
-      sections.forEach((section) => {
-        gsap.fromTo(
-          section,
-          { y: 50, opacity: 0 },
-          {
-            y: 0,
-            opacity: 1,
-            duration: 1,
-            scrollTrigger: {
-              trigger: section,
-              start: 'top 80%',
-              end: 'bottom 20%',
-              toggleActions: 'play none none reverse',
-              markers: false,
-            },
-          }
-        );
-      });
+      return () => clearTimeout(timer);
     }
   }, []);
 
@@ -80,6 +48,10 @@ export default function Home() {
         <title>Nicolas Galarza Vazquez | Desarrollador Fullstack</title>
         <meta name="description" content="Portafolio profesional de Nicolas Galarza Vazquez, desarrollador fullstack apasionado por la creación de experiencias web únicas y funcionales." />
         <link rel="icon" href="/favicon.ico" />
+        
+        {/* Preconectar con CDNs críticos */}
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
       </Head>
 
       <Cursor />
