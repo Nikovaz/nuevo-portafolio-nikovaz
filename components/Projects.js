@@ -12,7 +12,7 @@ const Projects = () => {
       title: 'Reparacion de celulares',
       description: 'Plataforma de administración para tiendas online con análisis de datos, gestión de inventario y reportes personalizados.',
       image: '../images/serviceCelularLogo.png',
-      tags: ['React', 'Redux', 'Node.js', 'MongoDB'],
+      tags: ['HTML, CSS, JavaScript, Batchfile'],
       url: 'https://tienda-matias-vazquez-ju7m.vercel.app/',
       github: 'https://github.com/Nikovaz/TiendaPibeMV.git'
     },
@@ -20,7 +20,7 @@ const Projects = () => {
       id: 2,
       title: 'Logistica Chamon',
       description: 'Aplicación para gestión de tareas, notas y seguimiento de hábitos con sincronización en la nube y recordatorios.',
-      image: '',
+      image: '../images/logoChamon.png',
       tags: ['React Native', 'Firebase', 'Redux', 'Express'],
       url: 'https://nikovaz.github.io/chamon/',
       github: 'https://github.com/Nikovaz/chamon.git'
@@ -29,19 +29,37 @@ const Projects = () => {
       id: 3,
       title: 'Primer Portafolio',
       description: 'Sitio web de noticias en tiempo real con filtrado por categorías, sistema de comentarios y panel de administración.',
-      image: '',
+      image: '../images/nikopage.png',
       tags: ['Next.js', 'Tailwind CSS', 'GraphQL', 'PostgreSQL'],
       url: 'https://portafolio-nikovaz.vercel.app/',
       github: 'https://github.com/Nikovaz/Portafolio.nikovaz.git'
-    },
+    }, 
     {
       id: 4,
-      title: 'Proyecto Final Coderhouse Desarrollo Web',
+      title: 'Proyecto Final Coderhouse Desarrollo Web ',
       description: 'Aplicación para seguimiento de entrenamientos, nutrición y progreso físico con gráficos personalizados.',
-      image: '',
-      tags: ['Vue.js', 'Vuex', 'Node.js', 'MongoDB'],
+      image: '../images/carlosG.jpeg',
+      tags: ['HTML, SCSS'],
       url: 'https://pre-entrega3-galarza-vazquez.vercel.app/',
       github: 'https://github.com/Nikovaz/PF.GalarzaVazquez.git'
+    },
+    {
+      id: 5,
+      title: 'Portafolio Andrea Delgado',
+      description: 'Aplicación para seguimiento de entrenamientos, nutrición y progreso físico con gráficos personalizados.',
+      image: '../images/andrea.png',
+      tags: ['CSS, HTML, JavaScript'],
+      url: 'https://nikovaz.github.io/portafolioAndreaDelgado/',
+      github: 'https://github.com/Nikovaz/portafolioAndreaDelgado'
+    },
+    {
+      id: 5,
+      title: 'Portafolio Andrea Delgado',
+      description: 'Aplicación para seguimiento de entrenamientos, nutrición y progreso físico con gráficos personalizados.',
+      image: '',
+      tags: ['CSS, HTML, JavaScript'],
+      url: '',
+      github: 'https://github.com/Nikovaz/PreentregaBackend2.NicolasGV.git'
     }
   ];
 

@@ -71,7 +71,7 @@ const Footer = () => {
             <div className="flex space-x-4">
               {/* GitHub */}
               <motion.a 
-                href="https://github.com/Nikovaz" 
+                href="https://github.com/Nikovaz/Nikovaz" 
                 target="_blank" 
                 rel="noopener noreferrer"
                 className="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center text-gray-400 hover:text-purple-400 hover:bg-gray-700 transition-all"
