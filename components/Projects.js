@@ -9,39 +9,39 @@ const Projects = () => {
   const projects = [
     {
       id: 1,
-      title: 'E-commerce Dashboard',
+      title: 'Reparacion de celulares',
       description: 'Plataforma de administración para tiendas online con análisis de datos, gestión de inventario y reportes personalizados.',
-      image: '',
+      image: '../images/serviceCelularLogo.png',
       tags: ['React', 'Redux', 'Node.js', 'MongoDB'],
-      url: '#',
-      github: 'https://github.com'
+      url: 'https://tienda-matias-vazquez-ju7m.vercel.app/',
+      github: 'https://github.com/Nikovaz/TiendaPibeMV.git'
     },
     {
       id: 2,
-      title: 'App de Productividad',
+      title: 'Logistica Chamon',
       description: 'Aplicación para gestión de tareas, notas y seguimiento de hábitos con sincronización en la nube y recordatorios.',
       image: '',
       tags: ['React Native', 'Firebase', 'Redux', 'Express'],
-      url: '#',
-      github: 'https://github.com'
+      url: 'https://nikovaz.github.io/chamon/',
+      github: 'https://github.com/Nikovaz/chamon.git'
     },
     {
       id: 3,
-      title: 'Portal de Noticias',
+      title: 'Primer Portafolio',
       description: 'Sitio web de noticias en tiempo real con filtrado por categorías, sistema de comentarios y panel de administración.',
       image: '',
       tags: ['Next.js', 'Tailwind CSS', 'GraphQL', 'PostgreSQL'],
-      url: '#',
-      github: 'https://github.com'
+      url: 'https://portafolio-nikovaz.vercel.app/',
+      github: 'https://github.com/Nikovaz/Portafolio.nikovaz.git'
     },
     {
       id: 4,
-      title: 'App de Fitness',
+      title: 'Proyecto Final Coderhouse Desarrollo Web',
       description: 'Aplicación para seguimiento de entrenamientos, nutrición y progreso físico con gráficos personalizados.',
       image: '',
       tags: ['Vue.js', 'Vuex', 'Node.js', 'MongoDB'],
-      url: '#',
-      github: 'https://github.com'
+      url: 'https://pre-entrega3-galarza-vazquez.vercel.app/',
+      github: 'https://github.com/Nikovaz/PF.GalarzaVazquez.git'
     }
   ];
 
