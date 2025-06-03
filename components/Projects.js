@@ -9,44 +9,35 @@ const Projects = () => {
   const projects = [
     {
       id: 1,
+      title: 'Freelance: Pagina web "Corte caninos a domicilio" ',
+      description: 'Sitio web de Corte Canino Martino - Servicio de peluquería canina profesional con servicio a domicilio. Desarrollado con React y diseño moderno y responsive.',
+      image: '../images/CorteCanino.png',
+      tags: ['HTML', 'CSS'],
+      url: 'https://nikovaz.github.io/PeluqueriaCaninaMartino/',
+      github: 'https://github.com/Nikovaz/PeluqueriaCaninaMartino.git'
+    },
+    {
+      id: 2,
       title: 'Reparacion de celulares',
-      description: 'Plataforma de administración para tiendas online con análisis de datos, gestión de inventario y reportes personalizados.',
+      description: 'Matias Cell Repair Este proyecto es un sitio web para un servicio técnico de reparación de celulares.',
       image: '../images/serviceCelularLogo.png',
       tags: ['HTML, CSS, JavaScript, Batchfile'],
       url: 'https://tienda-matias-vazquez-ju7m.vercel.app/',
       github: 'https://github.com/Nikovaz/TiendaPibeMV.git'
     },
     {
-      id: 2,
+      id: 3,
       title: 'Logistica Chamon',
-      description: 'Aplicación para gestión de tareas, notas y seguimiento de hábitos con sincronización en la nube y recordatorios.',
+      description: 'Sitio Web de Mensajería Este es el código fuente del sitio web para Chamon, un servicio de mensajería especializado en envíos para vendedores de Mercado Libre Flex en CABA y AMBA (Argentina).',
       image: '../images/logoChamon.png',
       tags: ['React Native', 'Firebase', 'Redux', 'Express'],
       url: 'https://nikovaz.github.io/chamon/',
       github: 'https://github.com/Nikovaz/chamon.git'
     },
     {
-      id: 3,
-      title: 'Primer Portafolio',
-      description: 'Sitio web de noticias en tiempo real con filtrado por categorías, sistema de comentarios y panel de administración.',
-      image: '../images/nikopage.png',
-      tags: ['Next.js', 'Tailwind CSS', 'GraphQL', 'PostgreSQL'],
-      url: 'https://portafolio-nikovaz.vercel.app/',
-      github: 'https://github.com/Nikovaz/Portafolio.nikovaz.git'
-    }, 
-    {
       id: 4,
-      title: 'Proyecto Final Coderhouse Desarrollo Web ',
-      description: 'Aplicación para seguimiento de entrenamientos, nutrición y progreso físico con gráficos personalizados.',
-      image: '../images/carlosG.jpeg',
-      tags: ['HTML, SCSS'],
-      url: 'https://pre-entrega3-galarza-vazquez.vercel.app/',
-      github: 'https://github.com/Nikovaz/PF.GalarzaVazquez.git'
-    },
-    {
-      id: 5,
       title: 'Portafolio Andrea Delgado',
-      description: 'Aplicación para seguimiento de entrenamientos, nutrición y progreso físico con gráficos personalizados.',
+      description: '',
       image: '../images/andrea.png',
       tags: ['CSS, HTML, JavaScript'],
       url: 'https://nikovaz.github.io/portafolioAndreaDelgado/',
@@ -54,15 +45,49 @@ const Projects = () => {
     },
     {
       id: 5,
-      title: 'Portafolio Andrea Delgado',
-      description: 'Aplicación para seguimiento de entrenamientos, nutrición y progreso físico con gráficos personalizados.',
-      image: '',
-      tags: ['CSS, HTML, JavaScript'],
-      url: '',
+      title: 'Proyecto Final Backend 2',
+      description: 'Este proyecto es una aplicación de ecommerce que incluye un sistema de gestión de usuarios con autenticación y autorización. Permite a los usuarios registrarse, iniciar sesión y realizar operaciones CRUD sobre su información.',
+      image: '../images/Backend2.png',
+      tags: ['Next.js', 'Tailwind CSS', 'GraphQL', 'PostgreSQL'],
+      url: 'https://nikovaz.github.io/PreentregaBackend2.NicolasGV/',
       github: 'https://github.com/Nikovaz/PreentregaBackend2.NicolasGV.git'
+    }, 
+    {
+      id: 6,
+      title: 'Proyecto Final Backend 1',
+      description: 'Este proyecto es una aplicación de backend desarrollada como parte del curso de Backend en CODER. La aplicación permite gestionar productos y carritos de compras, incluyendo funcionalidades para agregar, actualizar, eliminar y visualizar productos y carritos. Además, se implementa una funcionalidad en tiempo real utilizando Socket.IO.',
+      image: '../images/Backend1.png',
+      tags: ['JavaScript'],
+      github: 'https://github.com/Nikovaz/entregaFinalBackend1.NicolasGalarzaVazquez.git'
+    },
+    {
+      id: 7,
+      title: 'Proyecto Final React',
+      description: 'Bienvenido a nuestro proyecto de e-commerce dedicado a la venta de boxers y medias de alta calidad. Este proyecto está diseñado para proporcionar una experiencia de compra sencilla y agradable, tanto para los usuarios finales como para los administradores.',
+      image: '../images/React.png',
+      tags: ['CSS, HTML, JavaScript'],
+      url: 'https://proyectofinal-react-galarza-vazquez-1lrx-ptn1mr00t.vercel.app/',
+      github: 'https://github.com/Nikovaz/Proyectofinal.react.GalarzaVazquez.git'
+    },
+    {
+      id: 8,
+      title: 'Proyecto Final JavaScript',
+      description: 'Primer proyecto de CoderHouse en el curso de JavaScript',
+      image: '../images/JS.png',
+      tags: ['CSS, HTML, JavaScript'],
+      github: 'https://github.com/Nikovaz/ProyentoFinal.JS.Galarza.vazquez.git'
+    },
+    {
+      id: 9,
+      title: 'Proyecto Final Coderhouse Desarrollo Web ',
+      description: 'Primer proyecto de CoderHouse en el curso de Desarrollo Web',
+      image: '../images/gardel.png',
+      tags: ['HTML, SCSS'],
+      url: 'https://pre-entrega3-galarza-vazquez.vercel.app/',
+      github: 'https://github.com/Nikovaz/PF.GalarzaVazquez.git'
     }
   ];
-
+  
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
@@ -72,7 +97,7 @@ const Projects = () => {
       }
     }
   };
-
+  
   const itemVariants = {
     hidden: { y: 50, opacity: 0 },
     visible: {
@@ -84,7 +109,7 @@ const Projects = () => {
       }
     }
   };
-
+  
   return (
     <section id="projects" ref={sectionRef} className="py-24 bg-gray-800">
       <div className="container mx-auto px-6">
