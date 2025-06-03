@@ -4,6 +4,7 @@ import { useRouter } from 'next/router';
 import { useEffect } from 'react';
 import { initGSAP } from '../lib/gsap';
 import { initErrorHandling } from '../lib/error-handler';
+import ScrollToTop from '../components/ScrollToTop';
 
 function MyApp({ Component, pageProps }) {
   const router = useRouter();
@@ -38,9 +39,12 @@ function MyApp({ Component, pageProps }) {
   }, [router.events]);
 
   return (
-    <AnimatePresence mode="wait">
-      <Component {...pageProps} key={router.pathname} />
-    </AnimatePresence>
+    <>
+      <AnimatePresence mode="wait">
+        <Component {...pageProps} key={router.route} />
+      </AnimatePresence>
+      <ScrollToTop />
+    </>
   );
 }
 

@@ -1,11 +1,12 @@
-import { useRef } from 'react';
+import { useRef, useState } from 'react';
 import { motion, useInView } from 'framer-motion';
 import Link from 'next/link';
 
 const Projects = () => {
   const sectionRef = useRef(null);
   const isInView = useInView(sectionRef, { once: false, amount: 0.1 });
-  
+  const [showAll, setShowAll] = useState(false);
+
   const projects = [
     {
       id: 1,
@@ -88,6 +89,8 @@ const Projects = () => {
     }
   ];
   
+  const visibleProjects = showAll ? projects : projects.slice(0, 4);
+
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
@@ -128,7 +131,7 @@ const Projects = () => {
           initial="hidden"
           animate={isInView ? "visible" : "hidden"}
         >
-          {projects.map((project) => (
+          {visibleProjects.map((project) => (
             <motion.div
               key={project.id}
               className="bg-gray-900 rounded-xl overflow-hidden group transform transition-all duration-500 hover:-translate-y-2 hover:shadow-2xl"
@@ -182,6 +185,15 @@ const Projects = () => {
             </motion.div>
           ))}
         </motion.div>
+        
+        {!showAll && projects.length > 4 && (
+          <button
+            onClick={() => setShowAll(true)}
+            className="mt-8 mx-auto block px-6 py-3 bg-violet-500 text-white rounded-lg hover:bg-violet-600 hover:scale-105 transition-all duration-300 shadow-md hover:shadow-xl active:scale-95 active:bg-violet-700"
+          >
+            Ver más proyectos
+          </button>
+        )}
         
         <motion.div 
           className="mt-16 text-center"
