@@ -1,5 +1,6 @@
 import { useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
+import Image from 'next/image';
 
 const Hero = () => {
   const titleRef = useRef(null);
@@ -28,15 +29,25 @@ const Hero = () => {
     }
   };
 
+  const imageVariants = {
+    hover: {
+      scale: 1.05,
+      rotate: 2,
+      transition: {
+        type: "spring",
+        stiffness: 400,
+        damping: 17
+      }
+    }
+  };
+
   // Animación del indicador de desplazamiento
   useEffect(() => {
-    // Garantizar que el código se ejecute solo en el cliente
     if (typeof window === 'undefined') return;
     
     const scrollIndicator = scrollIndicatorRef.current;
     if (!scrollIndicator) return;
 
-    // Usar requestAnimationFrame para una animación suave
     let animationFrameId;
     let startTime;
     
@@ -44,7 +55,6 @@ const Hero = () => {
       if (!startTime) startTime = timestamp;
       const elapsed = timestamp - startTime;
       
-      // Movimiento sinusoidal suave
       const yPos = Math.sin(elapsed / 500) * 5;
       const opacity = 0.7 - Math.abs(yPos) / 20;
       
@@ -58,7 +68,6 @@ const Hero = () => {
     
     animationFrameId = requestAnimationFrame(animate);
     
-    // Limpiar animación al desmontar
     return () => {
       cancelAnimationFrame(animationFrameId);
     };
@@ -66,90 +75,90 @@ const Hero = () => {
 
   return (
     <section id="home" className="relative min-h-screen flex flex-col justify-center items-center">
-      {/* Fondo con efecto de gradiente */}
-      <div className="absolute inset-0 bg-gradient-to-b from-black to-gray-900 z-0" />
+      {/* Fondo tecnológico */}
+      <div className="absolute inset-0 z-0">
+        <div className="absolute inset-0 bg-gradient-to-br from-blue-900 to-purple-900" />
+        <div className="absolute inset-0 opacity-10" style={{
+          backgroundImage: 'url("/circuit-pattern.svg")',
+          backgroundSize: '200px 200px'
+        }} />
+        <div className="absolute inset-0 opacity-5" style={{
+          backgroundImage: 'radial-gradient(circle at 50% 50%, rgba(0,255,0,0.1) 1px, transparent 1px)',
+          backgroundSize: '20px 20px'
+        }} />
+      </div>
       
-      {/* Efecto de partículas o ruido simplificado */}
-      <div className="absolute inset-0 z-0 opacity-20" style={{ 
-        backgroundColor: '#000',
-        backgroundImage: 'radial-gradient(#444 1px, transparent 1px)',
-        backgroundSize: '30px 30px'
-      }} />
-
       <motion.div 
         className="container mx-auto px-6 z-10 text-center"
         variants={containerVariants}
         initial="hidden"
         animate="visible"
       >
+        {/* Imagen de perfil con efecto de rebote */}
+        <motion.div 
+          className="relative mb-12"
+          whileHover={{ scale: 1.05 }}
+          whileTap={{ scale: 0.95 }}
+        >
+          <motion.div 
+            className="relative w-40 h-40 mx-auto"
+            whileHover="hover"
+            variants={imageVariants}
+          >
+           
+          </motion.div>
+        </motion.div>
+
         <motion.p 
           className="text-purple-400 mb-4 tracking-widest"
           variants={childVariants}
         >
-          DESARROLLADOR FULLSTACK
+          DESARROLLADOR FULL-STACK Y ESPECIALISTA EN IA
         </motion.p>
         
         <motion.h1 
           ref={titleRef}
-          className="text-4xl md:text-7xl font-bold mb-8 tracking-tight"
+          className="text-5xl md:text-8xl font-bold mb-6 tracking-tight"
           variants={childVariants}
         >
-          Nicolas Galarza Vazquez
+          Soluciones Web y Automatización con IA para Potenciar tu Negocio
         </motion.h1>
-        
+
         <motion.p 
           ref={descriptionRef}
-          className="text-xl md:text-2xl text-gray-300 max-w-2xl mx-auto mb-12"
+          className="text-xl md:text-2xl mb-12 text-gray-400"
           variants={childVariants}
         >
-          Creando experiencias digitales impactantes y funcionales con las últimas tecnologías web.
+          NICOVAZ - Desarrollador Full-Stack especializado en el ecosistema MERN y experto en la implementación de agentes inteligentes para WhatsApp
         </motion.p>
-        
-        <motion.div
+
+        <div className="flex justify-center gap-8 mb-24">
+          <motion.a 
+            href="#projects"
+            className="px-8 py-4 bg-purple-500 text-white rounded-lg hover:bg-purple-600 transition-all duration-300"
+            whileHover={{ scale: 1.05 }}
+            variants={childVariants}
+          >
+            Ver Proyectos
+          </motion.a>
+          <motion.a 
+            href="#contact"
+            className="px-8 py-4 border-2 border-purple-500 text-white rounded-lg hover:bg-purple-500 hover:text-white transition-all duration-300"
+            whileHover={{ scale: 1.05 }}
+            variants={childVariants}
+          >
+            Contactarme
+          </motion.a>
+        </div>
+
+        <motion.div 
+          className="absolute bottom-16 left-1/2 transform -translate-x-1/2"
+          ref={scrollIndicatorRef}
           variants={childVariants}
-          className="flex flex-wrap justify-center gap-4"
         >
-          <a 
-            href="#projects" 
-            className="group relative inline-flex items-center justify-center px-8 py-3 font-medium text-white bg-purple-600 overflow-hidden rounded-full transition-all duration-300 ease-in-out hover:bg-purple-700"
-          >
-            <span className="relative z-10">Ver Proyectos</span>
-            <span className="absolute inset-0 bg-white/10 transform scale-x-0 group-hover:scale-x-100 origin-left transition-transform duration-500"></span>
-          </a>
-          
-          <a 
-            href="#contact" 
-            className="group relative inline-flex items-center justify-center px-8 py-3 font-medium text-white bg-transparent border border-white/30 overflow-hidden rounded-full transition-all duration-300 ease-in-out hover:border-white/70"
-          >
-            <span className="relative z-10">Contacto</span>
-            <span className="absolute inset-0 bg-white/10 transform scale-x-0 group-hover:scale-x-100 origin-left transition-transform duration-500"></span>
-          </a>
+          <span className="text-purple-400">Scroll Down</span>
         </motion.div>
       </motion.div>
-      
-      {/* Scroll indicator */}
-      <div 
-        ref={scrollIndicatorRef}
-        className="absolute bottom-10 left-1/2 transform -translate-x-1/2 flex flex-col items-center"
-      >
-        <span className="text-sm text-gray-400 mb-2">Scroll</span>
-        <svg 
-          width="24" 
-          height="24" 
-          viewBox="0 0 24 24" 
-          fill="none" 
-          xmlns="http://www.w3.org/2000/svg"
-          className="text-gray-400"
-        >
-          <path 
-            d="M12 5L12 19M12 19L19 12M12 19L5 12" 
-            stroke="currentColor" 
-            strokeWidth="2" 
-            strokeLinecap="round" 
-            strokeLinejoin="round"
-          />
-        </svg>
-      </div>
     </section>
   );
 };

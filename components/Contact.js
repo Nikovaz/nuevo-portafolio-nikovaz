@@ -9,7 +9,8 @@ const Contact = () => {
   const [formData, setFormData] = useState({
     name: '',
     email: '',
-    message: ''
+    message: '',
+    service: ''
   });
   
   const [formStatus, setFormStatus] = useState({
@@ -47,14 +48,15 @@ const Contact = () => {
         submitted: false,
         success: true,
         error: false,
-        message: '¡Mensaje enviado con éxito! Te responderé lo antes posible.'
+        message: ''
       });
       
       // Resetear formulario
       setFormData({
         name: '',
         email: '',
-        message: ''
+        message: '',
+        service: ''
       });
       
       // Limpiar mensaje de éxito después de 5 segundos
@@ -180,6 +182,22 @@ const Contact = () => {
           >
             <form ref={formRef} onSubmit={handleSubmit} className="bg-gray-800 p-8 rounded-xl shadow-xl border border-purple-500/20">
               <div className="mb-6">
+                <label htmlFor="service" className="block text-sm font-medium text-gray-300 mb-2">¿En qué estás interesado?</label>
+                <select
+                  id="service"
+                  name="service"
+                  value={formData.service}
+                  onChange={handleChange}
+                  required
+                  className="w-full bg-gray-700 border border-gray-600 rounded-md py-3 px-4 text-white focus:outline-none focus:ring-2 focus:ring-purple-500"
+                >
+                  <option value="">Selecciona un servicio</option>
+                  <option value="web">Desarrollo de una página/aplicación web</option>
+                  <option value="ia">Implementar un agente con IA</option>
+                  <option value="both">Ambos servicios</option>
+                </select>
+              </div>
+              <div className="mb-6">
                 <label htmlFor="name" className="block text-sm font-medium text-gray-300 mb-2">Nombre</label>
                 <input
                   type="text"
@@ -192,7 +210,6 @@ const Contact = () => {
                   placeholder="Tu nombre"
                 />
               </div>
-              
               <div className="mb-6">
                 <label htmlFor="email" className="block text-sm font-medium text-gray-300 mb-2">Email</label>
                 <input
@@ -206,7 +223,6 @@ const Contact = () => {
                   placeholder="tu@email.com"
                 />
               </div>
-              
               <div className="mb-6">
                 <label htmlFor="message" className="block text-sm font-medium text-gray-300 mb-2">Mensaje</label>
                 <textarea
@@ -220,7 +236,6 @@ const Contact = () => {
                   placeholder="¿En qué puedo ayudarte?"
                 ></textarea>
               </div>
-              
               <button
                 type="submit"
                 disabled={formStatus.submitted}
@@ -236,14 +251,12 @@ const Contact = () => {
                   </>
                 ) : 'Enviar mensaje'}
               </button>
-              
               {/* Mensajes de estado */}
               {formStatus.success && (
                 <div className="mt-4 bg-green-100 border-l-4 border-green-500 text-green-700 p-4 rounded">
-                  {formStatus.message}
+                  ¡Gracias por contactarte con NICOVAZ! Te responderé lo antes posible.
                 </div>
               )}
-              
               {formStatus.error && (
                 <div className="mt-4 bg-red-100 border-l-4 border-red-500 text-red-700 p-4 rounded">
                   {formStatus.message}

@@ -66,6 +66,17 @@ const Navbar = () => {
     })
   };
 
+  const imageVariants = {
+    hover: {
+      scale: 1.1,
+      transition: {
+        type: 'spring',
+        stiffness: 300,
+        damping: 20
+      }
+    }
+  };
+
   const navLinks = [
     { name: 'Inicio', href: '#home' },
     { name: 'Sobre mí', href: '#about' },
@@ -83,9 +94,13 @@ const Navbar = () => {
         variants={navbarVariants}
       >
         <Link href="/" legacyBehavior>
-          <a className="text-2xl font-bold tracking-tighter">
-            NIKOVAZ
-          </a>
+          <motion.a 
+            className="text-2xl font-bold tracking-tighter"
+            whileHover="hover"
+            variants={imageVariants}
+          >
+            NICOVAZ
+          </motion.a>
         </Link>
 
         {/* Desktop Navigation */}

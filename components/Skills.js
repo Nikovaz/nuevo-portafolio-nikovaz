@@ -4,55 +4,70 @@ import { gsap } from 'gsap';
 
 const Skills = () => {
   const sectionRef = useRef(null);
-  const progressRefs = useRef([]);
   const isInView = useInView(sectionRef, { once: false, amount: 0.2 });
   
-  // Agregar referencia para cada barra de progreso
-  const addToProgressRefs = (el) => {
-    if (el && !progressRefs.current.includes(el)) {
-      progressRefs.current.push(el);
+  const techCategories = [
+    {
+      name: 'Frontend',
+      techs: [
+        { name: 'React', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg' },
+        { name: 'Next.js', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nextjs/nextjs-original.svg' },
+        { name: 'JavaScript', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg' },
+        { name: 'TypeScript', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg' },
+        { name: 'HTML5', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg' },
+        { name: 'CSS3', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg' },
+        { name: 'SASS', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/sass/sass-original.svg' }
+      ]
+    },
+    {
+      name: 'Backend',
+      techs: [
+        { name: 'Node.js', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg' },
+        { name: 'Express', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/express/express-original.svg' }
+      ]
+    },
+    {
+      name: 'Database',
+      techs: [
+        { name: 'MongoDB', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg' },
+        { name: 'Firebase', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/firebase/firebase-plain.svg' },
+        { name: 'MongoAtlas', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg' },
+        { name: 'Supabase', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/supabase/supabase-original.svg' }
+      ]
+    },
+    {
+      name: 'Herramientas de Desarrollo',
+      techs: [
+        { name: 'Git', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg' },
+        { name: 'GitHub', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg' },
+        { name: 'Vercel', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vercel/vercel-original.svg' },
+        { name: 'Postman', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postman/postman-plain.svg' }
+      ]
+    },
+    {
+      name: 'IA y Automatización',
+      techs: [
+        { name: 'Gemini', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/google/google-original.svg' },
+        { name: 'n8n', icon: '/images/n8n copy.png' },
+        { name: 'Manychat', icon: '/images/WHATSAAP.png' },
+        { name: 'Claude', icon: '/images/META copy.png' }
+      ]
+    },
+    {
+      name: 'Plataformas Cloud y APIs',
+      techs: [
+        { name: 'Google Cloud', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/googlecloud/googlecloud-original.svg' },
+        { name: 'Firebase', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/firebase/firebase-plain.svg' },
+        { name: 'Meta API', icon: '/images/META copy.png' },
+        { name: 'WhatsApp API', icon: '/images/WHATSAAP.png' },
+        { name: 'Google Sheets API', icon: '/images/sheet.png' },
+        { name: 'Google Drive API', icon: '/images/google drive.png' },
+        { name: 'Gmail API', icon: '/images/gmail.png' },
+        { name: 'Hostinger VPS', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/hostinger/hostinger-original.svg' },
+        { name: 'WhatsApp Business API', icon: '/images/WHATSAAP.png' }
+      ]
     }
-  };
-
-  const skills = [
-  { name: 'Frontend', progress: 95, color: 'from-purple-500 to-blue-500' },
-  { name: 'Backend', progress: 85, color: 'from-pink-500 to-red-500' },
-  { name: 'Bases de Datos', progress: 90, color: 'from-indigo-500 to-violet-500' },
-  { name: 'Herramientas de Desarrollo', progress: 80, color: 'from-gray-500 to-slate-500' },
-  { name: 'IA y Automatización', progress: 75, color: 'from-lime-500 to-green-500' },
-  { name: 'Plataformas Cloud y APIs', progress: 70, color: 'from-cyan-500 to-blue-300' },
-  // Podrías considerar eliminar o ajustar estas si no se basan en la carrera de Coderhouse:
-  // { name: 'UI/UX Design', progress: 80, color: 'from-green-500 to-teal-500' },
-  // { name: 'Mobile Development', progress: 75, color: 'from-yellow-500 to-orange-500' },
-  // { name: 'DevOps', progress: 70, color: 'from-red-500 to-pink-500' },
-];
-
-const techCategories = [
-  {
-    name: 'Frontend',
-    techs: ['React', 'Next.js', 'JavaScript', 'TypeScript', 'HTML5', 'CSS3', 'Tailwind CSS', 'SASS']
-  },
-  {
-    name: 'Backend',
-    techs: ['Node.js', 'Express', 'REST API', 'Socket.io', 'Strapi']
-  },
-  {
-    name: 'Database',
-    techs: ['MongoDB', 'Firebase', 'Mongoose', 'MongoAtlas', 'Supabase']
-  },
-  {
-    name: 'Herramientas de Desarrollo',
-    techs: ['Git', 'GitHub', 'Vercel', 'Netlify', 'Webpack', 'Jest', 'GitHub Actions', 'Postman', 'Ngrok']
-  },
-  {
-    name: 'IA y Automatización',
-    techs: ['Gemini', 'n8n', 'Manychat']
-  },
-  {
-    name: 'Plataformas Cloud y APIs',
-    techs: ['Google Cloud', 'Firebase', 'Cloud con MCP']
-  }
-];
+  ];
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -74,23 +89,6 @@ const techCategories = [
     }
   };
 
-  useEffect(() => {
-    if (isInView && progressRefs.current.length) {
-      progressRefs.current.forEach((el, index) => {
-        gsap.fromTo(
-          el,
-          { width: 0 },
-          {
-            width: `${skills[index].progress}%`,
-            duration: 1.5,
-            ease: 'power3.out',
-            delay: 0.2 + (index * 0.1)
-          }
-        );
-      });
-    }
-  }, [isInView, skills]);
-
   return (
     <section id="skills" ref={sectionRef} className="py-24 bg-gray-900">
       <div className="container mx-auto px-6">
@@ -103,30 +101,7 @@ const techCategories = [
           Mis <span className="text-purple-400">Habilidades</span>
         </motion.h2>
         
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-16">
-          {/* Barras de progreso */}
-          <div className="space-y-8">
-            <h3 className="text-2xl font-semibold mb-6 text-purple-400">
-              Áreas de Experiencia
-            </h3>
-            
-            {skills.map((skill, index) => (
-              <div key={index} className="space-y-2">
-                <div className="flex justify-between">
-                  <span className="font-medium">{skill.name}</span>
-                  <span className="font-medium">{skill.progress}%</span>
-                </div>
-                <div className="h-3 w-full bg-gray-700 rounded-full overflow-hidden">
-                  <div 
-                    ref={addToProgressRefs}
-                    className={`h-full rounded-full bg-gradient-to-r ${skill.color}`}
-                    style={{ width: '0%' }}
-                  ></div>
-                </div>
-              </div>
-            ))}
-          </div>
-          
+        <div className="grid grid-cols-1 gap-16">
           {/* Tech stack */}
           <motion.div 
             variants={containerVariants}
@@ -134,22 +109,25 @@ const techCategories = [
             animate={isInView ? "visible" : "hidden"}
             className="grid grid-cols-1 gap-8"
           >
-            <h3 className="text-2xl font-semibold mb-6 text-purple-400">
-              Stack Tecnológico
-            </h3>
-            
             {techCategories.map((category, index) => (
-              <div key={index} className="space-y-3">
-                <h4 className="text-xl font-medium">{category.name}</h4>
-                <div className="flex flex-wrap gap-2">
+              <div key={index} className="space-y-4">
+                <h3 className="text-2xl font-semibold mb-6 text-purple-400">
+                  {category.name}
+                </h3>
+                <div className="grid grid-cols-4 md:grid-cols-6 lg:grid-cols-8 gap-4">
                   {category.techs.map((tech, i) => (
-                    <motion.span
+                    <motion.div
                       key={i}
                       variants={itemVariants}
-                      className="px-3 py-1 bg-gray-800 border border-gray-700 rounded-md text-sm hover:border-purple-400 transition-colors duration-300"
+                      className="flex flex-col items-center justify-center p-4 bg-gray-800 rounded-lg hover:bg-gray-700 transition-colors duration-300"
                     >
-                      {tech}
-                    </motion.span>
+                      <img 
+                        src={tech.icon} 
+                        alt={tech.name}
+                        className="w-12 h-12 mb-2"
+                      />
+                      <span className="text-sm text-gray-400">{tech.name}</span>
+                    </motion.div>
                   ))}
                 </div>
               </div>

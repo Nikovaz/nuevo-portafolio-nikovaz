@@ -1,0 +1,4 @@
+RewriteEngine On
+RewriteBase /
+RewriteRule ^_next/static/(.*)$ _next/static/$1 [L]
+RewriteRule ^(.*)$ index.html [L]

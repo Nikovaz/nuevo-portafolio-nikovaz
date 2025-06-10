@@ -11,7 +11,7 @@ const Footer = () => {
           {/* Logo y descripción */}
           <div className="space-y-4">
             <h3 className="text-xl font-bold text-white">
-              <span className="text-purple-400">NIKO</span>VAZ
+              <span className="text-purple-400">NICO</span>VAZ
             </h3>
             <p className="text-gray-400 max-w-md">
               Desarrollador web fullstack especializado en crear experiencias digitales atractivas y funcionales. Siempre aprendiendo y evolucionando.
@@ -109,7 +109,7 @@ const Footer = () => {
         {/* Copyright */}
         <div className="text-center">
           <p className="text-gray-500">
-            &copy; {currentYear} <span className="text-purple-400">NIKOVAZ</span>. Todos los derechos reservados.
+            &copy; {currentYear} <span className="text-purple-400">NICOVAZ</span>. Todos los derechos reservados.
           </p>
         </div>
       </div>

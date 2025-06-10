@@ -1,33 +1,16 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
-  swcMinify: true,
   images: {
-    domains: [],
-    formats: ['image/avif', 'image/webp'],
+    unoptimized: true, // Deshabilitar optimización de imágenes
+    domains: ['localhost', 'cdn.jsdelivr.net'] // Permitir imágenes de CDN
   },
-  // Ajusta esto según tus necesidades
-  async headers() {
-    return [
-      {
-        source: '/(.*)',
-        headers: [
-          {
-            key: 'X-Content-Type-Options',
-            value: 'nosniff',
-          },
-          {
-            key: 'X-Frame-Options',
-            value: 'DENY',
-          },
-          {
-            key: 'X-XSS-Protection',
-            value: '1; mode=block',
-          },
-        ],
-      },
-    ];
-  },
-};
+  output: 'export',
+  trailingSlash: true,
+  // Configuración para producción
+  env: {
+    HOSTINGER: true
+  }
+}
 
-module.exports = nextConfig;
+module.exports = nextConfig
